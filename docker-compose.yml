@@ -13,6 +13,12 @@ db:
         MYSQL_DATABASE: symfony
         MYSQL_USER: root
         MYSQL_PASSWORD: root
+mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+        - 1080:1080
+redis:
+    image: redis
 php:
     build: php-fpm
     expose:
@@ -21,6 +27,8 @@ php:
         - application
     links:
         - db
+        - mailcatcher
+        - redis
 nginx:
     build: nginx
     ports:

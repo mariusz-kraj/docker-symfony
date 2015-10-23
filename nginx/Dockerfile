@@ -2,7 +2,9 @@ FROM debian:jessie
 
 MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
 
-RUN apt-get update && apt-get install -y nginx
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install --no-install-recommends -y nginx
 
 ADD nginx.conf /etc/nginx/
 ADD symfony.conf /etc/nginx/sites-available/
